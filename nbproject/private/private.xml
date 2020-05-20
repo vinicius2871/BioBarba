@@ -3,11 +3,9 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/PICHAU/Documents/NetBeansProjects/BioBarba/src/view/MenuPrincipal.java</file>
-            <file>file:/C:/Users/PICHAU/Documents/NetBeansProjects/BioBarba/src/Model/DAO/Banco.java</file>
             <file>file:/C:/Users/PICHAU/Documents/NetBeansProjects/BioBarba/src/view/Agenda.java</file>
-            <file>file:/C:/Users/PICHAU/Documents/NetBeansProjects/BioBarba/src/Model/usuario.java</file>
-            <file>file:/C:/Users/PICHAU/Documents/NetBeansProjects/BioBarba/src/Controller/MenuPrincipalController.java</file>
+            <file>file:/C:/Users/PICHAU/Documents/NetBeansProjects/BioBarba/src/Model/Agendamento.java</file>
+            <file>file:/C:/Users/PICHAU/Documents/NetBeansProjects/BioBarba/src/Controller/Helper/AgendaHelper.java</file>
         </group>
     </open-files>
 </project-private>
