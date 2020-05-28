@@ -6,7 +6,12 @@
 package View;
 
 import Controller.AgendaController;
+import javax.swing.DefaultComboBoxModel;
+import javax.swing.JComboBox;
+import javax.swing.JFormattedTextField;
 import javax.swing.JTable;
+import javax.swing.JTextArea;
+import javax.swing.JTextField;
 
 /**
  *
@@ -43,8 +48,8 @@ public class Agenda extends javax.swing.JFrame {
         LabelHora = new javax.swing.JLabel();
         LabelObservacao = new javax.swing.JLabel();
         TextId = new javax.swing.JTextField();
-        TextCliente = new javax.swing.JComboBox<>();
-        TextServico = new javax.swing.JComboBox<>();
+        jComboBoxCliente = new javax.swing.JComboBox<>();
+        JComboBoxServico = new javax.swing.JComboBox<>();
         TextValor = new javax.swing.JTextField();
         TextFormatedData = new javax.swing.JFormattedTextField();
         TextFormatedHora = new javax.swing.JFormattedTextField();
@@ -102,11 +107,14 @@ public class Agenda extends javax.swing.JFrame {
         });
         getContentPane().add(TextId, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 230, 280, 40));
 
-        TextCliente.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Alan", "Afonso", "Abigail", "Alexandro" }));
-        getContentPane().add(TextCliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 290, 280, 40));
+        getContentPane().add(jComboBoxCliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 290, 280, 40));
 
-        TextServico.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Barba", "Barba + Corte", "Corte", " " }));
-        getContentPane().add(TextServico, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 350, 280, 40));
+        JComboBoxServico.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                JComboBoxServicoItemStateChanged(evt);
+            }
+        });
+        getContentPane().add(JComboBoxServico, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 350, 280, 40));
 
         TextValor.setText("0");
         TextValor.setToolTipText("");
@@ -166,12 +174,17 @@ public class Agenda extends javax.swing.JFrame {
     }//GEN-LAST:event_TextIdActionPerformed
 
     private void ButtonAgendarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonAgendarActionPerformed
-        // TODO add your handling code here:
+
+        this.controller.agendar();
     }//GEN-LAST:event_ButtonAgendarActionPerformed
 
     private void TextValorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TextValorActionPerformed
-        // TODO add your handling code here:
+           
     }//GEN-LAST:event_TextValorActionPerformed
+
+    private void JComboBoxServicoItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_JComboBoxServicoItemStateChanged
+        this.controller.atualizaValor();
+    }//GEN-LAST:event_JComboBoxServicoItemStateChanged
 
     /**
      * @param args the command line arguments
@@ -210,6 +223,7 @@ public class Agenda extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton ButtonAgendar;
+    private javax.swing.JComboBox<String> JComboBoxServico;
     private javax.swing.JLabel LabelAgenda;
     private javax.swing.JLabel LabelAgendaFundo;
     private javax.swing.JLabel LabelAgendaPainelFundo;
@@ -221,19 +235,21 @@ public class Agenda extends javax.swing.JFrame {
     private javax.swing.JLabel LabelServico;
     private javax.swing.JLabel LabelValor;
     private javax.swing.JTable TableAgendamentos;
-    private javax.swing.JComboBox<String> TextCliente;
     private javax.swing.JFormattedTextField TextFormatedData;
     private javax.swing.JFormattedTextField TextFormatedHora;
     private javax.swing.JTextField TextId;
     private javax.swing.JTextArea TextObservacao;
-    private javax.swing.JComboBox<String> TextServico;
     private javax.swing.JTextField TextValor;
+    private javax.swing.JComboBox<String> jComboBoxCliente;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     // End of variables declaration//GEN-END:variables
 
     private void iniciar() {
         this.controller.atualizaTabela();
+        this.controller.atualizaCliente();
+        this.controller.atualizaServico();
+        this.controller.atualizaValor();
     }
 
     public JTable getTableAgendamentos() {
@@ -243,6 +259,63 @@ public class Agenda extends javax.swing.JFrame {
     public void setTableAgendamentos(JTable TableAgendamentos) {
         this.TableAgendamentos = TableAgendamentos;
     }
+
+    public JComboBox<String> getJComboBoxServico() {
+        return JComboBoxServico;
+    }
+
+    public void setJComboBoxServico(JComboBox<String> JComboBoxServico) {
+        this.JComboBoxServico = JComboBoxServico;
+    }
+
+    public JComboBox<String> getjComboBoxCliente() {
+        return jComboBoxCliente;
+    }
+
+    public void setjComboBoxCliente(JComboBox<String> jComboBoxCliente) {
+        this.jComboBoxCliente = jComboBoxCliente;
+    }
+
+    public JTextField getTextValor() {
+        return TextValor;
+    }
+
+    public void setTextValor(JTextField TextValor) {
+        this.TextValor = TextValor;
+    }
+
+    public JFormattedTextField getTextFormatedData() {
+        return TextFormatedData;
+    }
+
+    public void setTextFormatedData(JFormattedTextField TextFormatedData) {
+        this.TextFormatedData = TextFormatedData;
+    }
+
+    public JFormattedTextField getTextFormatedHora() {
+        return TextFormatedHora;
+    }
+
+    public void setTextFormatedHora(JFormattedTextField TextFormatedHora) {
+        this.TextFormatedHora = TextFormatedHora;
+    }
+
+    public JTextField getTextId() {
+        return TextId;
+    }
+
+    public void setTextId(JTextField TextId) {
+        this.TextId = TextId;
+    }
+
+    public JTextArea getTextObservacao() {
+        return TextObservacao;
+    }
+
+    public void setTextObservacao(JTextArea TextObservacao) {
+        this.TextObservacao = TextObservacao;
+    }
+
     
     
     

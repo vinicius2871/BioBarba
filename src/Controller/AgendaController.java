@@ -7,7 +7,11 @@ package Controller;
 
 import Controller.Helper.AgendaHelper;
 import Model.Agendamento;
+import Model.Cliente;
 import Model.DAO.AgendamentoDAO;
+import Model.DAO.ClienteDAO;
+import Model.DAO.ServicoDAO;
+import Model.servico;
 import View.Agenda;
 import java.util.ArrayList;
 
@@ -32,7 +36,40 @@ public class AgendaController {
         
         //Exibir essa lista na view
         helper.preecherTabeela(agendamentos);
-        
-    
     }
+    
+    public void atualizaCliente(){
+    
+        //Buscar Clientes do Banco de Dados
+        ClienteDAO clienteDAO = new ClienteDAO();
+        ArrayList<Cliente> clientes = clienteDAO.selectAll();
+        
+        //Exibir Clientes no Combobox cliente
+        helper.preencherClientes(clientes);
+        
+    }
+    
+    public void atualizaServico(){
+    
+        ServicoDAO servicoDAO = new ServicoDAO();
+        ArrayList<servico> servicos = servicoDAO.selectAll();
+        
+        helper.preencherServicos(servicos);
+    }
+    public void atualizaValor(){
+    
+       servico Servico = helper.obterServico();
+       helper.setarValor(Servico.getValor());
+    }
+    
+     public void agendar(){
+        //Buscar Objeto Agendamento da Tela
+        Agendamento agendamento = helper.obterModelo();
+        //Salvar Objeto no banco de dados
+        new AgendamentoDAO().insert(agendamento);
+        //Inserir elemento na tabela
+        atualizaTabela();
+        helper.limparTela();
+    }
+    
 }

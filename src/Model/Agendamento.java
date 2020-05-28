@@ -22,7 +22,7 @@ public class Agendamento {
     private servico Servico;
     private float valor;
     private Date data;
-    private String observação;
+    private String observacao;
 
     public Agendamento(int id, Cliente cliente, servico Servico, float valor, String data) {
         this.id = id;
@@ -36,6 +36,10 @@ public class Agendamento {
         }
     }
 
+    public Agendamento(int id, Cliente cliente, servico Servico, float valor, String data, String observacao) {
+        this(id,cliente,Servico,valor,data);
+        this.observacao = observacao;
+    }
     public int getId() {
         return id;
     }
@@ -86,11 +90,11 @@ public class Agendamento {
     }
 
     public String getObservação() {
-        return observação;
+        return observacao;
     }
 
     public void setObservação(String observação) {
-        this.observação = observação;
+        this.observacao = observação;
     }
     
     
